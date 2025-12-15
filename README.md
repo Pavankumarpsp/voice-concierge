@@ -131,7 +131,8 @@ Example Rule
   response: "The WiFi password is: ROOM1234."
 }
 
-This approach keeps the system:
+
+**This approach keeps the system:**
 
 Simple
 
@@ -140,20 +141,6 @@ Deterministic
 Fully offline
 
 Easy to extend
-
-
-
-🧠 **Assumptions Made
-** 
-The application is intended for single-guest interaction
-
-Responses are English-only (input can be multilingual)
-
-Internet connection is available for browser speech engines
-
-Guest queries are short and conversational
-
-No persistent storage is required
 
 
 
