@@ -34,7 +34,6 @@ export default function Home() {
 
     setMessages((prev) => [...prev, userMsg, botMsg]);
 
-    // Prevent STT → TTS feedback loop
     if (!listening) {
       speak(botText);
     }
@@ -42,21 +41,20 @@ export default function Home() {
 
   function speak(text: string) {
     window.speechSynthesis.cancel();
-
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.onstart = () => setSpeaking(true);
     utterance.onend = () => setSpeaking(false);
-
     window.speechSynthesis.speak(utterance);
   }
 
   return (
     <main
-      className={`min-h-screen flex items-center justify-center p-4 transition ${
-        darkMode
-          ? "bg-gradient-to-br from-gray-900 to-black"
-          : "bg-gradient-to-br from-slate-100 to-slate-200"
-      }`}
+      className="min-h-screen flex items-center justify-center p-4 bg-cover bg-center bg-no-repeat transition"
+      style={{
+        backgroundImage: darkMode
+          ? "linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('/bg-concierge.jpg')"
+          : "linear-gradient(rgba(255,255,255,0.65), rgba(255,255,255,0.65)), url('/bg-concierge.jpg')",
+      }}
     >
       {/* Glassmorphism Card */}
       <div
@@ -79,7 +77,7 @@ export default function Home() {
           <select
             value={language}
             onChange={(e) => setLanguage(e.target.value)}
-            className={`text-sm px-3 py-1 rounded border shadow-sm transition ${
+            className={`text-sm px-3 py-1 rounded border shadow-sm ${
               darkMode
                 ? "bg-gray-800 text-white border-gray-600"
                 : "bg-white text-black border-gray-300"
@@ -93,7 +91,7 @@ export default function Home() {
           {/* Dark / Light Toggle */}
           <button
             onClick={() => setDarkMode(!darkMode)}
-            className={`text-sm px-3 py-1 rounded border shadow-sm transition ${
+            className={`text-sm px-3 py-1 rounded border shadow-sm ${
               darkMode
                 ? "bg-gray-800 text-white border-gray-600"
                 : "bg-white text-black border-gray-300"
@@ -110,7 +108,7 @@ export default function Home() {
           </div>
         )}
 
-        {/* Chat Container (FIXED VISIBILITY) */}
+        {/* Chat Container */}
         <div
           className={`h-[400px] overflow-y-auto rounded-xl p-4 border transition ${
             darkMode
@@ -124,7 +122,7 @@ export default function Home() {
           <div ref={bottomRef} />
         </div>
 
-        {/* Microphone Controls */}
+        {/* Mic Controls */}
         <div className="mt-4">
           <MicControls
             onTranscript={handleTranscript}
