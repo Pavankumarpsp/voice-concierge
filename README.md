@@ -131,7 +131,6 @@ Example Rule
   response: "The WiFi password is: ROOM1234."
 }
 
-
 This approach keeps the system:
 
 Simple
@@ -144,8 +143,8 @@ Easy to extend
 
 
 
-🧠 Assumptions Made
-
+🧠 **Assumptions Made
+** 
 The application is intended for single-guest interaction
 
 Responses are English-only (input can be multilingual)
@@ -158,7 +157,7 @@ No persistent storage is required
 
 
 
-🌟 Bonus Features Added (Optional)
+🌟 **Bonus Features Added (Optional)**
 
 🌍 Multi-language speech input (English, Hindi, Kannada)
 
