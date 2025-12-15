@@ -51,15 +51,25 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen flex items-center justify-center p-4">
+    <main
+      className={`min-h-screen flex items-center justify-center p-4 transition ${
+        darkMode
+          ? "bg-gradient-to-br from-gray-900 to-black"
+          : "bg-gradient-to-br from-slate-100 to-slate-200"
+      }`}
+    >
       {/* Glassmorphism Card */}
       <div
-        className={`w-full max-w-md rounded-2xl shadow-2xl p-4 backdrop-blur-md ${
-          darkMode ? "bg-gray-900 text-white" : "bg-white/95"
+        className={`w-full max-w-md rounded-2xl shadow-2xl p-5 backdrop-blur-md transition ${
+          darkMode ? "bg-slate-900/90 text-white" : "bg-white"
         }`}
       >
         {/* Header */}
-        <h1 className="text-xl font-bold text-center mb-3">
+        <h1
+          className={`text-xl font-bold text-center mb-3 ${
+            darkMode ? "text-white" : "text-gray-800"
+          }`}
+        >
           Voice Concierge
         </h1>
 
@@ -69,7 +79,7 @@ export default function Home() {
           <select
             value={language}
             onChange={(e) => setLanguage(e.target.value)}
-            className={`text-sm px-3 py-1 rounded border shadow-sm ${
+            className={`text-sm px-3 py-1 rounded border shadow-sm transition ${
               darkMode
                 ? "bg-gray-800 text-white border-gray-600"
                 : "bg-white text-black border-gray-300"
@@ -83,7 +93,7 @@ export default function Home() {
           {/* Dark / Light Toggle */}
           <button
             onClick={() => setDarkMode(!darkMode)}
-            className={`text-sm px-3 py-1 rounded border shadow-sm ${
+            className={`text-sm px-3 py-1 rounded border shadow-sm transition ${
               darkMode
                 ? "bg-gray-800 text-white border-gray-600"
                 : "bg-white text-black border-gray-300"
@@ -100,12 +110,12 @@ export default function Home() {
           </div>
         )}
 
-        {/* Chat Container */}
+        {/* Chat Container (FIXED VISIBILITY) */}
         <div
-          className={`border rounded-lg p-3 h-[400px] overflow-y-auto ${
+          className={`h-[400px] overflow-y-auto rounded-xl p-4 border transition ${
             darkMode
-              ? "bg-gray-800 border-gray-700"
-              : "bg-white border-gray-300"
+              ? "bg-slate-800 border-slate-700"
+              : "bg-white border-gray-300 shadow-inner"
           }`}
         >
           {messages.map((msg, i) => (
