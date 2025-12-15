@@ -63,8 +63,9 @@ npm run dev
 4️⃣ Open in browser
 http://localhost:3000
 
-**Note: Microphone access is required for speech input.
-Note: While speech recognition supports multiple languages, responses are generated only when
+**Note: Microphone access is required for speech input.**
+
+**Note: While speech recognition supports multiple languages, responses are generated only when
 matching keywords are defined. Unmatched non-English queries correctly fall back by design.**
 
 
