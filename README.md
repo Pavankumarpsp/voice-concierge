@@ -7,9 +7,8 @@ The application runs fully in the browser, without using any paid APIs, backend 
 🌐 Live Demo
 
 🔗 Live URL: Add your Vercel deployment link here
-📦 GitHub Repo: Add your repository link here
+📦 GitHub Repo: https://github.com/Pavankumarpsp/voice-concierge
 
-🖼️ Screenshot
 
 ## 🖼️ Screenshots
 
@@ -19,17 +18,17 @@ The application runs fully in the browser, without using any paid APIs, backend 
 ---
 
 ### 🌙 Dark Mode
-![Dark Mode](./Screenshot/02-dark-mode.png)
+![Dark Mode](./Screenshot/02-dark-mode.png.png)
 
 ---
 
 ### 💬 Chat Conversation
-![Chat Conversation](./Screenshot/03-chat-conversation.png)
+![Chat Conversation](./Screenshot/03-chat-conversation.png.png)
 
 ---
 
 ### 🎙️ Listening State
-![Listening State](./Screenshot/04-listening-state.png)
+![Listening State](./Screenshot/04-listening-state.png.png)
 
 
 🛠️ Tech Stack
