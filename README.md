@@ -47,23 +47,9 @@ State Management: React Hooks
 
 Deployment: Vercel
 
-📁 Project Structure
-voice-concierge/
-├── app/
-│   ├── layout.tsx      # Global layout & background
-│   ├── page.tsx        # Main application logic
-│   └── globals.css
-├── components/
-│   ├── ChatBubble.tsx  # Chat UI component
-│   └── MicControls.tsx # Speech input controls
-├── utils/
-│   └── qaMatcher.ts    # Rule-based Q&A matching logic
-├── types/
-│   └── message.ts      # Message type definition
-└── public/
-    └── bg-concierge.jpg
 
 ▶️ How to Run the Project Locally
+
 1️⃣ Clone the repository
 git clone <your-repo-url>
 cd voice-concierge
@@ -77,10 +63,9 @@ npm run dev
 4️⃣ Open in browser
 http://localhost:3000
 
-
-Note: Microphone access is required for speech input.
+**Note: Microphone access is required for speech input.
 Note: While speech recognition supports multiple languages, responses are generated only when
-matching keywords are defined. Unmatched non-English queries correctly fall back by design.
+matching keywords are defined. Unmatched non-English queries correctly fall back by design.**
 
 
 🎯 Project Features
