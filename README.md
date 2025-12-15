@@ -14,22 +14,23 @@ The application runs fully in the browser, without using any paid APIs, backend 
 ## 🖼️ Screenshots
 
 ### 🌞 Light Mode
-![Light Mode](./Screenshot/light-mode.png)
+![Light Mode](./Screenshot/01-light-mode.png)
 
 ---
 
 ### 🌙 Dark Mode
-![Dark Mode](./Screenshot/dark-mode.png)
+![Dark Mode](./Screenshot/02-dark-mode.png)
 
 ---
 
 ### 💬 Chat Conversation
-![Chat Conversation](./Screenshot/chat.png)
+![Chat Conversation](./Screenshot/03-chat-conversation.png)
 
 ---
 
 ### 🎙️ Listening State
-![Listening State](./Screenshot/listening.png)
+![Listening State](./Screenshot/04-listening-state.png)
+
 
 🛠️ Tech Stack
 
