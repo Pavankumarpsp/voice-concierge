@@ -109,9 +109,9 @@ Auto-scrolls as new messages are added
 
 Clear distinction between user and assistant messages
 
+      
 
-
-🔍 How Queries Are Matched (Keywords / Fuzzy Logic)
+**🔍 How Queries Are Matched (Keywords / Fuzzy Logic)**
 
 User queries are processed using a keyword-based matching approach:
 
