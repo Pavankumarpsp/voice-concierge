@@ -2,10 +2,6 @@
 
 import { useRef } from "react";
 
-/**
- * Browser SpeechRecognition constructor
- * (safe for SSR)
- */
 const SpeechRecognition =
   typeof window !== "undefined"
     ? window.SpeechRecognition || (window as any).webkitSpeechRecognition
@@ -30,31 +26,35 @@ export default function MicControls({
 
   const startListening = () => {
     if (!SpeechRecognition) {
-      alert("Speech Recognition is not supported in this browser.");
+      alert("Speech Recognition not supported.");
       return;
     }
 
-    // Stop TTS to prevent feedback loop
-    window.speechSynthesis.cancel();
+    window.speechSynthesis.cancel(); // prevent feedback loop
 
     const recognition = new SpeechRecognition();
     recognition.lang = language;
     recognition.interimResults = false;
     recognition.continuous = false;
 
-    recognition.onresult = (event: any) => {
-      const text = event.results[0][0].transcript;
-      onTranscript(text);
+    recognition.onresult = (event: SpeechRecognitionEvent) => {
+      let finalTranscript = "";
+
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        if (event.results[i].isFinal) {
+          finalTranscript += event.results[i][0].transcript;
+        }
+      }
+
+      if (finalTranscript.trim()) {
+        onTranscript(finalTranscript.trim());
+      }
 
       recognition.stop();
-      recognitionRef.current = null;
       setListening(false);
     };
 
-    recognition.onerror = () => {
-      recognitionRef.current = null;
-      setListening(false);
-    };
+    recognition.onerror = () => setListening(false);
 
     recognition.start();
     recognitionRef.current = recognition;
@@ -69,19 +69,17 @@ export default function MicControls({
 
   return (
     <div className="flex flex-col items-center gap-3 mt-4">
-      {/* Listening indicator */}
       {listening && (
         <span className="text-sm text-green-500 animate-pulse">
           🎙️ Listening...
         </span>
       )}
 
-      {/* Buttons */}
       <div className="flex gap-4">
         <button
           onClick={startListening}
           disabled={listening}
-          className={`px-4 py-2 rounded text-white font-medium transition ${
+          className={`px-4 py-2 rounded text-white font-medium ${
             listening
               ? "bg-gray-400 cursor-not-allowed"
               : "bg-green-600 hover:bg-green-700"
@@ -93,12 +91,12 @@ export default function MicControls({
         <button
           onClick={stopListening}
           disabled={!listening}
-          className={`px-4 py-2 rounded font-medium transition ${
+          className={`px-4 py-2 rounded font-medium ${
             listening
-              ? "bg-red-600 text-white hover:bg-red-700"
+              ? "bg-red-600 text-white"
               : darkMode
-              ? "bg-gray-700 text-gray-400 cursor-not-allowed"
-              : "bg-gray-300 text-gray-500 cursor-not-allowed"
+              ? "bg-gray-700 text-gray-400"
+              : "bg-gray-300 text-gray-500"
           }`}
         >
           Stop
