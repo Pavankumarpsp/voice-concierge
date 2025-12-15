@@ -14,7 +14,7 @@ The application runs fully in the browser, without using any paid APIs, backend 
 ## 🖼️ Screenshots
 
 ### 🌞 Light Mode
-![Light Mode](./Screenshot/01-light-mode.png)
+![Light Mode](./Screenshot/01-light-mode.png.png)
 
 ---
 
