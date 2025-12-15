@@ -6,7 +6,8 @@ The application runs fully in the browser, without using any paid APIs, backend 
 
 🌐 Live Demo 
 
-🔗 Live URL:voice-concierge-pavankumarps.vercel.app
+🔗 Live URL: voice-concierge-pavankumarps.vercel.app
+
 📦 GitHub Repo: https://github.com/Pavankumarpsp/voice-concierge
 
 
