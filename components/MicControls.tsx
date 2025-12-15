@@ -2,6 +2,15 @@
 
 import { useRef } from "react";
 
+/**
+ * Browser SpeechRecognition constructor
+ * (safe for SSR)
+ */
+const SpeechRecognition =
+  typeof window !== "undefined"
+    ? window.SpeechRecognition || (window as any).webkitSpeechRecognition
+    : null;
+
 type MicControlsProps = {
   onTranscript: (text: string) => void;
   listening: boolean;
@@ -20,31 +29,30 @@ export default function MicControls({
   const recognitionRef = useRef<any>(null);
 
   const startListening = () => {
-    const SpeechRecognition =
-      window.SpeechRecognition || (window as any).webkitSpeechRecognition;
-
     if (!SpeechRecognition) {
-      alert("Speech Recognition not supported in this browser.");
+      alert("Speech Recognition is not supported in this browser.");
       return;
     }
 
-    // Stop any ongoing speech (prevents feedback loop)
+    // Stop TTS to prevent feedback loop
     window.speechSynthesis.cancel();
 
     const recognition = new SpeechRecognition();
-    recognition.lang = language;        // 🌍 Multi-language support
+    recognition.lang = language;
     recognition.interimResults = false;
-    recognition.continuous = false;     // ✅ Listen only once
+    recognition.continuous = false;
 
     recognition.onresult = (event: any) => {
       const text = event.results[0][0].transcript;
       onTranscript(text);
 
       recognition.stop();
+      recognitionRef.current = null;
       setListening(false);
     };
 
     recognition.onerror = () => {
+      recognitionRef.current = null;
       setListening(false);
     };
 
