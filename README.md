@@ -4,9 +4,9 @@ A browser-based Voice Concierge web application that allows hotel guests to spea
 
 The application runs fully in the browser, without using any paid APIs, backend services, or AI models.
 
-🌐 Live Demo
+🌐 Live Demo 
 
-🔗 Live URL: Add your Vercel deployment link here
+🔗 Live URL:voice-concierge-pavankumarps.vercel.app
 📦 GitHub Repo: https://github.com/Pavankumarpsp/voice-concierge
 
 
