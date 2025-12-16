@@ -11,16 +11,13 @@ export default function Home() {
     { role: "assistant", text: "Hello! How can I help you today?" },
   ]);
 
-  // Mic, speaking & UI state
   const [listening, setListening] = useState(false);
   const [speaking, setSpeaking] = useState(false);
   const [language, setLanguage] = useState("en-US");
   const [darkMode, setDarkMode] = useState(false);
 
-  // Auto-scroll reference
   const bottomRef = useRef<HTMLDivElement | null>(null);
 
-  // Auto-scroll when messages change
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
@@ -34,10 +31,7 @@ export default function Home() {
 
     setMessages((prev) => [...prev, userMsg, botMsg]);
 
-    // Prevent STT → TTS feedback loop
-    if (!listening) {
-      speak(botText);
-    }
+    if (!listening) speak(botText);
   };
 
   function speak(text: string) {
@@ -51,11 +45,32 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen flex items-center justify-center p-4">
-      {/* Glassmorphism Card */}
+    <main className="relative min-h-screen flex items-center justify-center p-4 overflow-hidden">
+
+      {/* 🔵 Background Image */}
       <div
-        className={`w-full max-w-md rounded-2xl shadow-2xl p-4 backdrop-blur-md ${
-          darkMode ? "bg-gray-900 text-white" : "bg-white/95"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('/bg-concierge.png')",
+          filter: darkMode
+            ? "brightness(0.6)"
+            : "brightness(1.2) contrast(1.05)",
+        }}
+      />
+
+      {/* 🌈 Animated Gradient Overlay */}
+      <div
+        className={`absolute inset-0 animate-gradient ${
+          darkMode
+            ? "bg-[linear-gradient(120deg,rgba(0,0,0,0.7),rgba(30,41,59,0.7),rgba(0,0,0,0.7))]"
+            : "bg-[linear-gradient(120deg,rgba(255,255,255,0.45),rgba(219,234,254,0.45),rgba(255,255,255,0.45))]"
+        }`}
+      />
+
+      {/* 🪟 Glass Card */}
+      <div
+        className={`relative z-10 w-full max-w-md rounded-2xl shadow-2xl p-5 backdrop-blur-xl transition ${
+          darkMode ? "bg-slate-900/85 text-white" : "bg-white/90 text-gray-800"
         }`}
       >
         {/* Header */}
@@ -63,13 +78,12 @@ export default function Home() {
           Voice Concierge
         </h1>
 
-        {/* Top Controls */}
+        {/* Controls */}
         <div className="flex justify-between items-center mb-3 gap-2">
-          {/* Language Selector */}
           <select
             value={language}
             onChange={(e) => setLanguage(e.target.value)}
-            className={`text-sm px-3 py-1 rounded border shadow-sm ${
+            className={`px-3 py-1 rounded border shadow-sm text-sm ${
               darkMode
                 ? "bg-gray-800 text-white border-gray-600"
                 : "bg-white text-black border-gray-300"
@@ -80,10 +94,9 @@ export default function Home() {
             <option value="kn-IN">Kannada</option>
           </select>
 
-          {/* Dark / Light Toggle */}
           <button
             onClick={() => setDarkMode(!darkMode)}
-            className={`text-sm px-3 py-1 rounded border shadow-sm ${
+            className={`px-3 py-1 rounded border shadow-sm text-sm ${
               darkMode
                 ? "bg-gray-800 text-white border-gray-600"
                 : "bg-white text-black border-gray-300"
@@ -100,12 +113,12 @@ export default function Home() {
           </div>
         )}
 
-        {/* Chat Container */}
+        {/* Chat Box */}
         <div
-          className={`border rounded-lg p-3 h-[400px] overflow-y-auto ${
+          className={`h-[400px] overflow-y-auto rounded-xl p-4 border transition ${
             darkMode
-              ? "bg-gray-800 border-gray-700"
-              : "bg-white border-gray-300"
+              ? "bg-slate-800 border-slate-700"
+              : "bg-white border-gray-300 shadow-inner"
           }`}
         >
           {messages.map((msg, i) => (
@@ -114,7 +127,7 @@ export default function Home() {
           <div ref={bottomRef} />
         </div>
 
-        {/* Microphone Controls */}
+        {/* Mic Controls */}
         <div className="mt-4">
           <MicControls
             onTranscript={handleTranscript}
@@ -125,6 +138,19 @@ export default function Home() {
           />
         </div>
       </div>
+
+      {/* 🎨 Gradient Animation CSS */}
+      <style jsx global>{`
+        .animate-gradient {
+          background-size: 300% 300%;
+          animation: gradientMove 12s ease infinite;
+        }
+        @keyframes gradientMove {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+      `}</style>
     </main>
   );
 }
